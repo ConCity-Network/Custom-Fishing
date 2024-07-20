@@ -456,27 +456,29 @@ public class CustomFishingHook {
             case ITEM -> {
                 for (int i = 0; i < amount; i++) {
                     plugin.getScheduler().sync().runLater(() -> {
-                        ItemStack item = plugin.getItemManager().getItemLoot(context, gears.getItem(FishingGears.GearType.ROD).stream().findAny().orElseThrow().right(), hook);
+                        Item item = plugin.getItemManager().dropItemLoot(context, gears.getItem(FishingGears.GearType.ROD).stream().findAny().orElseThrow().right(), hook);
+                        ItemStack stack = item.getItemStack();
+                        gamingPlayer.getPlayer().getInventory().addItem(stack.clone());
                         if (item != null && Objects.equals(context.arg(ContextKeys.NICK), "UNDEFINED")) {
 
-                            Optional<String> displayName = plugin.getItemManager().wrap(item.clone()).displayName();
+                            Optional<String> displayName = plugin.getItemManager().wrap(stack).displayName();
                             if (displayName.isPresent()) {
                                 context.arg(ContextKeys.NICK, AdventureHelper.jsonToMiniMessage(displayName.get()));
                             } else {
-                                context.arg(ContextKeys.NICK, "<lang:" + item.getType().translationKey() + ">");
+                                context.arg(ContextKeys.NICK, "<lang:" + stack.getType().translationKey() + ">");
                             }
-                            gamingPlayer.getPlayer().getInventory().addItem(item.clone());
                         }
 
-                        /*FishingLootSpawnEvent spawnEvent = new FishingLootSpawnEvent(context, hook.getLocation(), nextLoot, item);
+                        FishingLootSpawnEvent spawnEvent = new FishingLootSpawnEvent(context, hook.getLocation(), nextLoot, item);
                         Bukkit.getPluginManager().callEvent(spawnEvent);
                         if (item != null && !spawnEvent.summonEntity())
                             item.remove();
+                        item.remove();
                         if (spawnEvent.skipActions())
                             return;
                         if (item != null && item.isValid() && nextLoot.preventGrabbing()) {
                             item.getPersistentDataContainer().set(Objects.requireNonNull(NamespacedKey.fromString("owner", plugin.getBoostrap())), PersistentDataType.STRING, context.getHolder().getName());
-                        }*/
+                        }
                         doSuccessActions();
                     }, (long) ConfigManager.multipleLootSpawnDelay() * i, hook.getLocation());
                 }
