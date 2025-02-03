@@ -88,15 +88,15 @@ public class VoidFishingMechanic implements HookMechanic {
             timer++;
             if (timer % 2 == 0) {
                 if (timer >= 16) timer = 0;
-                hook.getWorld().spawnParticle(Particle.END_ROD, hook.getX() + 0.5 * Math.cos(timer * 22.5D * 0.017453292F), hook.getY() - 0.15, hook.getZ() + 0.5 * Math.sin(timer * 22.5D * 0.017453292F), 0,0,0,0);
+                hook.getWorld().spawnParticle(Particle.END_ROD, hook.getLocation().getX() + 0.5 * Math.cos(timer * 22.5D * 0.017453292F), hook.getLocation().getY() - 0.15, hook.getLocation().getZ() + 0.5 * Math.sin(timer * 22.5D * 0.017453292F), 0,0,0,0);
             }
             if (this.nibble > 0) {
                 --this.nibble;
                 if (this.nibble % 4 == 0) {
                     if (RandomUtils.generateRandomDouble(0, 1) < 0.5) {
-                        hook.getWorld().spawnParticle(Particle.END_ROD, hook.getX(), hook.getY(), hook.getZ(), (int) (1.0F + 0.3 * 20.0F), 0.3, 0.0D, 0.3, 0.10000000298023224D);
+                        hook.getWorld().spawnParticle(Particle.END_ROD, hook.getLocation().getX(), hook.getLocation().getY(), hook.getLocation().getZ(), (int) (1.0F + 0.3 * 20.0F), 0.3, 0.0D, 0.3, 0.10000000298023224D);
                     } else {
-                        hook.getWorld().spawnParticle(Particle.DRAGON_BREATH, hook.getX(), hook.getY(), hook.getZ(), (int) (1.0F + 0.3 * 20.0F), 0.3, 0.0D, 0.3, 0.10000000298023224D);
+                        hook.getWorld().spawnParticle(Particle.DRAGON_BREATH, hook.getLocation().getX(), hook.getLocation().getY(), hook.getLocation().getZ(), (int) (1.0F + 0.3 * 20.0F), 0.3, 0.0D, 0.3, 0.10000000298023224D);
                     }
                 }
                 if (this.nibble <= 0) {
@@ -119,9 +119,9 @@ public class VoidFishingMechanic implements HookMechanic {
                         f = this.fishAngle * 0.017453292F;
                         f1 = (float) Math.sin(f);
                         f2 = (float) Math.cos(f);
-                        d0 = hook.getX() + (double) (f1 * (float) this.timeUntilHooked * 0.1F);
-                        d1 = hook.getY();
-                        d2 = hook.getZ() + (double) (f2 * (float) this.timeUntilHooked * 0.1F);
+                        d0 = hook.getLocation().getX() + (double) (f1 * (float) this.timeUntilHooked * 0.1F);
+                        d1 = hook.getLocation().getY();
+                        d2 = hook.getLocation().getZ() + (double) (f2 * (float) this.timeUntilHooked * 0.1F);
                         if (RandomUtils.generateRandomFloat(0,1) < 0.15F) {
                             hook.getWorld().spawnParticle(Particle.END_ROD, d0, d1 - 0.10000000149011612D, d2, 1, f1, 0.1D, f2, 0.0D);
                         }
@@ -129,8 +129,8 @@ public class VoidFishingMechanic implements HookMechanic {
                         float f4 = f2 * 0.04F;
                         hook.getWorld().spawnParticle(Particle.END_ROD, d0, d1, d2, 0, f4, 0.01D, -f3, 1.0D);
                     } else {
-                        double d3 = hook.getY() + 0.5D;
-                        hook.getWorld().spawnParticle(Particle.END_ROD, hook.getX(), d3, hook.getZ(), (int) (1.0F + 0.3 * 20.0F), 0.3, 0.0D, 0.3, 0.20000000298023224D);
+                        double d3 = hook.getLocation().getY() + 0.5D;
+                        hook.getWorld().spawnParticle(Particle.END_ROD, hook.getLocation().getX(), d3, hook.getLocation().getZ(), (int) (1.0F + 0.3 * 20.0F), 0.3, 0.0D, 0.3, 0.20000000298023224D);
                         this.nibble = RandomUtils.generateRandomInt(20, 40);
                         this.hooked = true;
                         hook.getWorld().playSound(hook.getLocation(), Sound.ITEM_TRIDENT_THUNDER, 0.25F, 1.0F + (RandomUtils.generateRandomFloat(0,1)-RandomUtils.generateRandomFloat(0,1)) * 0.4F);
@@ -151,9 +151,9 @@ public class VoidFishingMechanic implements HookMechanic {
                     if (RandomUtils.generateRandomFloat(0, 1) < f) {
                         f1 = RandomUtils.generateRandomFloat(0.0F, 360.0F) * 0.017453292F;
                         f2 = RandomUtils.generateRandomFloat(25.0F, 60.0F);
-                        d0 = hook.getX() + Math.sin(f1) * f2 * 0.1D;
-                        d1 = hook.getY();
-                        d2 = hook.getZ() + Math.cos(f1) * f2 * 0.1D;
+                        d0 = hook.getLocation().getX() + Math.sin(f1) * f2 * 0.1D;
+                        d1 = hook.getLocation().getY();
+                        d2 = hook.getLocation().getZ() + Math.cos(f1) * f2 * 0.1D;
                         hook.getWorld().spawnParticle(Particle.DRAGON_BREATH, d0, d1, d2, 2 + RandomUtils.generateRandomInt(0,1), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D);
                     }
                     if (this.timeUntilLured <= 0) {

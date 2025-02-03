@@ -42,7 +42,7 @@ import net.momirealms.customfishing.common.util.ListUtils;
 import net.momirealms.customfishing.common.util.Pair;
 import net.momirealms.customfishing.common.util.RandomUtils;
 import net.momirealms.sparrow.heart.SparrowHeart;
-import net.momirealms.sparrow.heart.feature.armorstand.FakeArmorStand;
+import net.momirealms.sparrow.heart.feature.entity.armorstand.FakeArmorStand;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;

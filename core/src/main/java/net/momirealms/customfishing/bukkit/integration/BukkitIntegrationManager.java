@@ -36,7 +36,6 @@ import net.momirealms.customfishing.bukkit.integration.quest.BattlePassQuest;
 import net.momirealms.customfishing.bukkit.integration.quest.BetonQuestQuest;
 import net.momirealms.customfishing.bukkit.integration.quest.ClueScrollsQuest;
 import net.momirealms.customfishing.bukkit.integration.season.AdvancedSeasonsProvider;
-import net.momirealms.customfishing.bukkit.integration.season.CustomCropsSeasonProvider;
 import net.momirealms.customfishing.bukkit.integration.season.RealisticSeasonsProvider;
 import net.momirealms.customfishing.bukkit.item.BukkitItemManager;
 import net.momirealms.customfishing.common.util.Pair;
@@ -126,7 +125,7 @@ public class BukkitIntegrationManager implements IntegrationManager {
         } else if (isHooked("AdvancedSeasons")) {
             registerSeasonProvider(new AdvancedSeasonsProvider());
         } else if (isHooked("CustomCrops")) {
-            registerSeasonProvider(new CustomCropsSeasonProvider());
+            //registerSeasonProvider(new CustomCropsSeasonProvider());
         }
         if (isHooked("Vault")) {
             VaultHook.initialize();
@@ -140,7 +139,11 @@ public class BukkitIntegrationManager implements IntegrationManager {
             clueScrollsQuest.register();
         }
         if (isHooked("BetonQuest")) {
-            BetonQuestQuest.register();
+            try {
+                BetonQuestQuest.register();
+            } catch (Exception | Error e) {
+                e.printStackTrace();
+            }
         }
         if (isHooked("PlaceholderAPI")) {
             new CustomFishingPapi(plugin).load();

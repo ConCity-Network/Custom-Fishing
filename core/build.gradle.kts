@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     // platform
-    compileOnly("dev.folia:folia-api:${rootProject.properties["paper_version"]}-R0.1-SNAPSHOT")
+    compileOnly("dev.folia:folia-api:1.20.4-R0.1-SNAPSHOT")
     // subprojects
     implementation(project(":common"))
     implementation(project(":api")) {
@@ -33,7 +33,7 @@ dependencies {
     implementation("com.saicone.rtag:rtag:${rootProject.properties["rtag_version"]}")
     implementation("com.saicone.rtag:rtag-item:${rootProject.properties["rtag_version"]}")
     // nms util
-    implementation("com.github.Xiao-MoMi:Sparrow-Heart:${rootProject.properties["sparrow_heart_version"]}")
+    implementation("com.github.Xiao-MoMi:Sparrow-Heart:0.49")
 //    implementation(files("libs/Sparrow-Heart-${rootProject.properties["sparrow_heart_version"]}.jar"))
     // bstats
     compileOnly("org.bstats:bstats-bukkit:${rootProject.properties["bstats_version"]}")
@@ -88,15 +88,15 @@ artifacts {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
-    options.release.set(17)
+    options.release.set(21)
     dependsOn(tasks.clean)
 }

@@ -2,7 +2,7 @@ repositories {
     maven("https://jitpack.io/") // itemsadder
     maven("https://mvn.lumine.io/repository/maven-public/") // mythicmobs
     maven("https://nexus.phoenixdevt.fr/repository/maven-public/") // mmoitems
-    maven("https://papermc.io/repo/repository/maven-public/")
+    maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi/") // papi
     maven("https://r.irepo.space/maven/") // neigeitems
     maven("https://repo.oraxen.com/releases/") // oraxen
@@ -24,11 +24,10 @@ dependencies {
     // papi
     compileOnly("me.clip:placeholderapi:${rootProject.properties["placeholder_api_version"]}")
     // server
-    compileOnly("dev.folia:folia-api:${rootProject.properties["paper_version"]}-R0.1-SNAPSHOT")
+    compileOnly("dev.folia:folia-api:1.20.6-R0.1-SNAPSHOT")
     // vault
     compileOnly("com.github.MilkBowl:VaultAPI:${rootProject.properties["vault_version"]}")
     // season
-    compileOnly("com.github.Xiao-MoMi:Custom-Crops:3.4.8")
     compileOnly(files("libs/RealisticSeasons-api.jar"))
     compileOnly(files("libs/AdvancedSeasons-API.jar"))
     // enchantment
@@ -61,15 +60,15 @@ dependencies {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
-    options.release.set(17)
+    options.release.set(21)
     dependsOn(tasks.clean)
 }

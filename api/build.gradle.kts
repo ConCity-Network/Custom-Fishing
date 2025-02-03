@@ -5,8 +5,9 @@ plugins {
 
 repositories {
     maven("https://jitpack.io/") // rtag
-    maven("https://papermc.io/repo/repository/maven-public/")
+    maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi/") // papi
+    maven("https://repo.papermc.io/repository/maven-public/")
 }
 
 dependencies {
@@ -19,10 +20,10 @@ dependencies {
     }
     implementation("com.saicone.rtag:rtag:${rootProject.properties["rtag_version"]}")
     implementation("com.saicone.rtag:rtag-item:${rootProject.properties["rtag_version"]}")
-    compileOnly("dev.folia:folia-api:${rootProject.properties["paper_version"]}-R0.1-SNAPSHOT")
+    compileOnly("dev.folia:folia-api:1.20.4-R0.1-SNAPSHOT")
     compileOnly("com.google.code.gson:gson:${rootProject.properties["gson_version"]}")
     compileOnly("me.clip:placeholderapi:${rootProject.properties["placeholder_api_version"]}")
-    compileOnly("com.github.Xiao-MoMi:Sparrow-Heart:${rootProject.properties["sparrow_heart_version"]}")
+    compileOnly("com.github.Xiao-MoMi:Sparrow-Heart:0.49")
 //    compileOnly(files("libs/Sparrow-Heart-${rootProject.properties["sparrow_heart_version"]}.jar"))
 }
 

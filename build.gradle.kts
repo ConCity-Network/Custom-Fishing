@@ -15,7 +15,7 @@ subprojects {
     repositories {
         mavenCentral()
         maven("https://jitpack.io/") // sparrow-heart, rtag
-        maven("https://papermc.io/repo/repository/maven-public/") // paper
+        maven("https://repo.papermc.io/repository/maven-public/") // paper
         maven("https://oss.sonatype.org/content/repositories/snapshots")
         maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/") // spigot
     }

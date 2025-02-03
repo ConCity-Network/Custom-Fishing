@@ -76,7 +76,7 @@ public class LavaFishingMechanic implements HookMechanic {
         if (fluidData.getFluidType() == Fluid.LAVA || fluidData.getFluidType() == Fluid.FLOWING_LAVA) {
             lavaHeight = (float) (fluidData.getLevel() * 0.125);
         }
-        return lavaHeight > 0 && this.hook.getY() % 1 <= lavaHeight;
+        return lavaHeight > 0 && this.hook.getLocation().getY() % 1 <= lavaHeight;
     }
 
     @Override
@@ -104,7 +104,7 @@ public class LavaFishingMechanic implements HookMechanic {
             }
             if (this.nibble > 0) {
                 --this.nibble;
-                if (this.hook.getY() % 1 <= lavaHeight) {
+                if (this.hook.getLocation().getY() % 1 <= lavaHeight) {
                     this.jumpTimer++;
                     if (this.jumpTimer >= 4) {
                         this.jumpTimer = 0;
@@ -119,7 +119,7 @@ public class LavaFishingMechanic implements HookMechanic {
                     this.currentState = 0;
                 }
             } else {
-                if (this.hook.getY() % 1 <= lavaHeight || this.hook.isInLava()) {
+                if (this.hook.getLocation().getY() % 1 <= lavaHeight || this.hook.isInLava()) {
                     Vector previousVector = this.hook.getVelocity();
                     this.hook.setVelocity(new Vector(previousVector.getX() * 0.6, Math.min(0.1, Math.max(-0.1, previousVector.getY() + 0.1)), previousVector.getZ() * 0.6));
                     this.currentState = 1;
@@ -149,9 +149,9 @@ public class LavaFishingMechanic implements HookMechanic {
                         f = this.fishAngle * 0.017453292F;
                         f1 = (float) Math.sin(f);
                         f2 = (float) Math.cos(f);
-                        d0 = hook.getX() + (double) (f1 * (float) this.timeUntilHooked * 0.1F);
-                        d1 = hook.getY();
-                        d2 = hook.getZ() + (double) (f2 * (float) this.timeUntilHooked * 0.1F);
+                        d0 = hook.getLocation().getX() + (double) (f1 * (float) this.timeUntilHooked * 0.1F);
+                        d1 = hook.getLocation().getY();
+                        d2 = hook.getLocation().getZ() + (double) (f2 * (float) this.timeUntilHooked * 0.1F);
                         if (RandomUtils.generateRandomFloat(0,1) < 0.15F) {
                             hook.getWorld().spawnParticle(Particle.FLAME, d0, d1 - 0.10000000149011612D, d2, 1, f1, 0.1D, f2, 0.0D);
                         }
@@ -159,8 +159,8 @@ public class LavaFishingMechanic implements HookMechanic {
                         float f4 = f2 * 0.04F;
                         hook.getWorld().spawnParticle(Particle.FLAME, d0, d1, d2, 0, f4, 0.01D, -f3, 1.0D);
                     } else {
-                        double d3 = hook.getY() + 0.5D;
-                        hook.getWorld().spawnParticle(Particle.FLAME, hook.getX(), d3, hook.getZ(), (int) (1.0F + 0.3 * 20.0F), 0.3, 0.0D, 0.3, 0.20000000298023224D);
+                        double d3 = hook.getLocation().getY() + 0.5D;
+                        hook.getWorld().spawnParticle(Particle.FLAME, hook.getLocation().getX(), d3, hook.getLocation().getZ(), (int) (1.0F + 0.3 * 20.0F), 0.3, 0.0D, 0.3, 0.20000000298023224D);
                         this.nibble = RandomUtils.generateRandomInt(20, 40);
                         this.hooked = true;
                         hook.getWorld().playSound(hook.getLocation(), Sound.ENTITY_GENERIC_EXTINGUISH_FIRE, 0.25F, 1.0F + (RandomUtils.generateRandomFloat(0,1)-RandomUtils.generateRandomFloat(0,1)) * 0.4F);
